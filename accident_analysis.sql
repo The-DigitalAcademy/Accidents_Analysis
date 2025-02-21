@@ -40,16 +40,17 @@ CREATE TABLE "enforcementMap" (
 );
 
 CREATE TABLE "first_road" (
-  "first_road_id" serial PRIMARY KEY,
   "first_road_class" varchar,
-  "first_road_number" varchar
+  "first_road_number" varchar,
+  CONSTRAINT "first_road_id" PRIMARY KEY ("first_road_class", "first_road_number")
 );
 
 CREATE TABLE "second_road" (
-  "second_road_id" serial PRIMARY KEY,
   "second_road_class" varchar,
-  "second_road_number" varchar
+  "second_road_number" varchar,
+  CONSTRAINT "second_road_id" PRIMARY KEY ("second_road_class", "second_road_number")
 );
+
 
 CREATE TABLE "road_map" (
   "first_road_id" int,
