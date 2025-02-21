@@ -42,19 +42,22 @@ CREATE TABLE "enforcementMap" (
 CREATE TABLE "first_road" (
   "first_road_class" varchar,
   "first_road_number" varchar,
-  CONSTRAINT "first_road_id" PRIMARY KEY ("first_road_class", "first_road_number")
+  "first_road_id" varchar GENERATED ALWAYS AS ("first_road_class" || '-' || "first_road_number") STORED,
+  PRIMARY KEY ("first_road_id"),
+  CONSTRAINT "first_road_unique_id" UNIQUE ("first_road_id")
 );
 
 CREATE TABLE "second_road" (
   "second_road_class" varchar,
   "second_road_number" varchar,
-  CONSTRAINT "second_road_id" PRIMARY KEY ("second_road_class", "second_road_number")
+  "second_road_id" varchar GENERATED ALWAYS AS ("second_road_class" || '-' || "second_road_number") STORED,
+  PRIMARY KEY ("second_road_id"),
+  CONSTRAINT "second_road_unique_id" UNIQUE ("second_road_id")
 );
 
-
 CREATE TABLE "road_map" (
-  "first_road_id" int,
-  "second_road_id" int,
+  "first_road_id" varchar,
+  "second_road_id" varchar,
   FOREIGN KEY ("first_road_id") REFERENCES "first_road" ("first_road_id"),
   FOREIGN KEY ("second_road_id") REFERENCES "second_road" ("second_road_id")
 );
@@ -127,7 +130,7 @@ CREATE TABLE "accidents" (
   "special_conditions_at_site_id" int,
   "carriageway_hazards_id" int,
   "urban_rural_area_id" int,
-  "first_road_id" int,
+  "first_road_id" varchar,
   "local_authority_highway_id" int,
   "speed_limit_id" int,
   "road_type_id" int,
@@ -140,8 +143,4 @@ CREATE TABLE "accidents" (
   FOREIGN KEY ("carriageway_hazards_id") REFERENCES "carriage_hazards" ("carriage_hazards_id"),
   FOREIGN KEY ("urban_rural_area_id") REFERENCES "urban_rural_area" ("urban_rural_area_id"),
   FOREIGN KEY ("postcode_id") REFERENCES "postcode" ("postcode_id"),
-  FOREIGN KEY ("local_authority_highway_id") REFERENCES "enforcement_highway" ("local_authority_highway_id"),
-  FOREIGN KEY ("speed_limit_id") REFERENCES "speed_limit" ("speed_limit_id"),
-  FOREIGN KEY ("road_type_id") REFERENCES "road_type" ("road_type_id"),
-  FOREIGN KEY ("first_road_id") REFERENCES "first_road" ("first_road_id")
-);
+  FOR
