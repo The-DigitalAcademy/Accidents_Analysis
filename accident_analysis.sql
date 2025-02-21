@@ -109,7 +109,7 @@ CREATE TABLE "carriage_hazards" (
 
 CREATE TABLE "urban_rural_area" (
   "urban_rural_area_id" serial PRIMARY KEY,
-  "urban_rural_area" boolean
+  "urban_rural_area" varchar
 );
 
 CREATE TABLE "accidents" (
@@ -119,7 +119,7 @@ CREATE TABLE "accidents" (
   "date" date,
   "time" time,
   "day_of_week" varchar,
-  "police_present_at_scene" boolean,
+  "police_present_at_scene" varchar,
   "police_force" int,
   "postcode_id" int,
   "pedestrian_crossing_human_control_id" int,
