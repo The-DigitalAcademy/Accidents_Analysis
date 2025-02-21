@@ -143,4 +143,8 @@ CREATE TABLE "accidents" (
   FOREIGN KEY ("carriageway_hazards_id") REFERENCES "carriage_hazards" ("carriage_hazards_id"),
   FOREIGN KEY ("urban_rural_area_id") REFERENCES "urban_rural_area" ("urban_rural_area_id"),
   FOREIGN KEY ("postcode_id") REFERENCES "postcode" ("postcode_id"),
-  FOR
+  FOREIGN KEY ("local_authority_highway_id") REFERENCES "enforcement_highway" ("local_authority_highway_id"),
+  FOREIGN KEY ("speed_limit_id") REFERENCES "speed_limit" ("speed_limit_id"),
+  FOREIGN KEY ("road_type_id") REFERENCES "road_type" ("road_type_id"),
+  FOREIGN KEY ("first_road_id") REFERENCES "first_road" ("first_road_id")
+);
