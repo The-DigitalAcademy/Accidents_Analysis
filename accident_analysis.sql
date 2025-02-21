@@ -58,6 +58,18 @@ CREATE TABLE "second_road" (
   "second_road_number" varchar
 );
 
+CREATE TABLE "road_type" (
+  "road_type_id" serial PRIMARY KEY,
+  "road_type" varchar
+);
+
+CREATE TABLE "speed_limit" (
+  "speed_limit_id" serial PRIMARY KEY,
+  "speed_limit" int
+);
+
+
+
 CREATE TABLE "first_road" (
   "first_road_id" serial PRIMARY KEY,
   "first_road_class" varchar,
@@ -67,12 +79,25 @@ CREATE TABLE "first_road" (
   FOREIGN KEY ("second_road_id") REFERENCES "second_road" ("second_road_id")
 );
 
-
 CREATE TABLE "road_accident_map" (
   "first_road_id" int,
   "accident_id" int,
   FOREIGN KEY ("first_road_id") REFERENCES "first_road" ("first_road_id"),
   FOREIGN KEY ("accident_id") REFERENCES "accidents" ("accident_id")
+);
+
+CREATE TABLE "speed_map" (
+  "speed_limit_id" int,
+  "first_road_id" int,
+  FOREIGN KEY ("speed_limit_id") REFERENCES "speed_limit" ("speed_limit_id"),
+  FOREIGN KEY ("first_road_id") REFERENCES "first_road" ("first_road_id")
+);
+
+CREATE TABLE "road_type_map" (
+  "road_type_id" int,
+  "first_road_id" int,
+  FOREIGN KEY ("road_type_id") REFERENCES "road_type" ("road_type_id"),
+  FOREIGN KEY ("first_road_id") REFERENCES "first_road" ("first_road_id")
 );
 
 CREATE TABLE "pedestrain_crossing_hc" (
