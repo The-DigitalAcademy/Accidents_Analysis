@@ -72,12 +72,12 @@ CREATE TABLE "speed_limit" (
   "speed_limit" int
 );
 
-CREATE TABLE "pedestrain_crossing_hc" (
+CREATE TABLE "pedestrian_crossing_hc" (
   "pedestrian_crossing_human_control_id" serial PRIMARY KEY,
   "pedestrian_crossing_human_control" varchar
 );
 
-CREATE TABLE "pedestrain_crossing_pf" (
+CREATE TABLE "pedestrian_crossing_pf" (
   "pedestrian_crossing_physical_facilities_id" serial PRIMARY KEY,
   "pedestrian_crossing_physical_facilities" varchar
 );
@@ -102,9 +102,9 @@ CREATE TABLE "special_conditions_at_site" (
   "special_conditions_at_site" varchar
 );
 
-CREATE TABLE "carriage_hazards" (
-  "carriage_hazards_id" serial PRIMARY KEY,
-  "carriage_hazards" varchar
+CREATE TABLE "carriageway_hazards" (
+  "carriageway_hazards_id" serial PRIMARY KEY,
+  "carriageway_hazards" varchar
 );
 
 CREATE TABLE "urban_rural_area" (
@@ -134,13 +134,13 @@ CREATE TABLE "accidents" (
   "local_authority_highway_id" int,
   "speed_limit_id" int,
   "road_type_id" int,
-  FOREIGN KEY ("pedestrian_crossing_human_control_id") REFERENCES "pedestrain_crossing_hc" ("pedestrian_crossing_human_control_id"),
-  FOREIGN KEY ("pedestrian_crossing_physical_facilities_id") REFERENCES "pedestrain_crossing_pf" ("pedestrian_crossing_physical_facilities_id"),
+  FOREIGN KEY ("pedestrian_crossing_human_control_id") REFERENCES "pedestrian_crossing_hc" ("pedestrian_crossing_human_control_id"),
+  FOREIGN KEY ("pedestrian_crossing_physical_facilities_id") REFERENCES "pedestrian_crossing_pf" ("pedestrian_crossing_physical_facilities_id"),
   FOREIGN KEY ("light_conditions_id") REFERENCES "light_conditions" ("light_conditions_id"),
   FOREIGN KEY ("weather_conditions_id") REFERENCES "weather_conditions" ("weather_conditions_id"),
   FOREIGN KEY ("road_surface_conditions_id") REFERENCES "road_surface_conditions" ("road_surface_conditions_id"),
   FOREIGN KEY ("special_conditions_at_site_id") REFERENCES "special_conditions_at_site" ("special_conditions_at_site_id"),
-  FOREIGN KEY ("carriageway_hazards_id") REFERENCES "carriage_hazards" ("carriage_hazards_id"),
+  FOREIGN KEY ("carriageway_hazards_id") REFERENCES "carriageway_hazards" ("carriageway_hazards_id"),
   FOREIGN KEY ("urban_rural_area_id") REFERENCES "urban_rural_area" ("urban_rural_area_id"),
   FOREIGN KEY ("postcode_id") REFERENCES "postcode" ("postcode_id"),
   FOREIGN KEY ("local_authority_highway_id") REFERENCES "enforcement_highway" ("local_authority_highway_id"),
