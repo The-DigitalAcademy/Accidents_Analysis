@@ -32,7 +32,7 @@ CREATE TABLE "enforcement_highway" (
   "local_authority_highway" varchar
 );
 
-CREATE TABLE "enforcementMap" (
+CREATE TABLE "enforcement_map" (
   "local_authority_district_id" int,
   "local_authority_highway_id" int,
     FOREIGN KEY ("local_authority_district_id") REFERENCES "enforcement_district" ("local_authority_district_id"),
